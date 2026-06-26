@@ -1,0 +1,11 @@
+/* ============================================================
+   MAVICO · Fonts
+   The Mavico wordmark is a wide geometric sans (Futura-family).
+   Closest free match: JOST (a geometric, Futura-derived face) for
+   the brand/display voice. Body uses MANROPE (geometric-humanist,
+   highly legible). Mono uses JETBRAINS MONO for data/code.
+   --> If the licensed brand font exists, swap the @import + the
+       --font-* vars in typography.css and re-run.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');

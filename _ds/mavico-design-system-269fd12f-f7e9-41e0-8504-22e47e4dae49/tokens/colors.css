@@ -1,0 +1,95 @@
+/* ============================================================
+   MAVICO · Color tokens
+   Built on the logo's black + gold. Warm-tinted neutrals so the
+   greys sit naturally beside the gold. Base scales first, then
+   semantic aliases for surfaces, text, borders, and brand.
+   Sampled brand values: gold #C38F2B · ink #0D0D0C
+   ============================================================ */
+
+:root {
+  /* ---- Brand gold scale (500 = sampled brand gold) ---- */
+  --gold-50:  #FAF4E6;
+  --gold-100: #F3E6C4;
+  --gold-200: #E8CF94;
+  --gold-300: #DBB662;
+  --gold-400: #CFA23F;
+  --gold-500: #C38F2B; /* brand */
+  --gold-600: #A5761F;
+  --gold-700: #835C18;
+  --gold-800: #5F4212;
+  --gold-900: #3D2A0C;
+
+  /* ---- Ink / warm-neutral scale (950 = logo background) ---- */
+  --ink-950: #0D0D0C;
+  --ink-900: #161514;
+  --ink-800: #232120;
+  --ink-700: #34312E;
+  --ink-600: #4A4641;
+  --ink-500: #6B655E;
+  --ink-400: #918A80;
+  --ink-300: #B8B1A6;
+  --ink-200: #D9D3C8;
+  --ink-100: #ECE8E0;
+  --ink-50:  #F7F4EE; /* warm paper */
+  --white:   #FFFFFF;
+
+  /* ---- Semantic hues (each: base + tint surface) ---- */
+  --success-500: #3A8C5F;
+  --success-600: #2E7350;
+  --success-50:  #E7F2EC;
+
+  --warning-500: #D98324;
+  --warning-600: #B86A18;
+  --warning-50:  #FBEEDD;
+
+  --error-500:   #C5403B;
+  --error-600:   #A4302C;
+  --error-50:    #F8E5E4;
+
+  --info-500:    #3D6FB0;
+  --info-600:    #305A92;
+  --info-50:     #E5EDF6;
+
+  /* ============================================================
+     SEMANTIC ALIASES  (use these in product code)
+     ============================================================ */
+
+  /* Brand */
+  --brand:           var(--gold-500);
+  --brand-strong:    var(--gold-600);
+  --brand-soft:      var(--gold-100);
+  --brand-contrast:  var(--ink-950); /* text/icon on gold fills */
+
+  /* Surfaces — light context (default) */
+  --surface-page:    var(--ink-50);
+  --surface-card:    var(--white);
+  --surface-sunken:  var(--ink-100);
+  --surface-raised:  var(--white);
+
+  /* Surfaces — dark context (the signature Mavico look) */
+  --surface-ink:      var(--ink-950);
+  --surface-ink-soft: var(--ink-900);
+  --surface-ink-card: var(--ink-800);
+
+  /* Text — on light */
+  --text-strong:  var(--ink-950);
+  --text-body:    var(--ink-800);
+  --text-muted:   var(--ink-500);
+  --text-subtle:  var(--ink-400);
+  --text-onbrand: var(--ink-950);
+
+  /* Text — on dark */
+  --text-inverse:        var(--white);
+  --text-inverse-muted:  var(--ink-300);
+  --text-inverse-subtle: var(--ink-400);
+
+  /* Borders / dividers */
+  --border-subtle:  var(--ink-200);
+  --border-default: var(--ink-300);
+  --border-strong:  var(--ink-700);
+  --border-ondark:  rgba(255,255,255,0.12);
+  --border-brand:   var(--gold-500);
+
+  /* Focus ring */
+  --focus-ring: var(--gold-500);
+}

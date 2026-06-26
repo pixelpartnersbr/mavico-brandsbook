@@ -1,0 +1,51 @@
+/* ============================================================
+   MAVICO · Typography tokens
+   Display voice = Jost (geometric, Futura-family, matches logo).
+   Body = Manrope. Mono = JetBrains Mono.
+   Mavico headlines are SET IN UPPERCASE with wide tracking to
+   echo the wordmark; body is sentence case, comfortable tracking.
+   ============================================================ */
+
+:root {
+  /* Families */
+  --font-display: 'Jost', 'Futura', 'Century Gothic', sans-serif;
+  --font-body:    'Manrope', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extra:    800;
+
+  /* Type scale (fluid-friendly, px) */
+  --text-3xs: 0.6875rem; /* 11 — micro labels */
+  --text-2xs: 0.75rem;   /* 12 */
+  --text-xs:  0.8125rem;  /* 13 */
+  --text-sm:  0.9375rem;  /* 15 */
+  --text-md:  1rem;       /* 16 — base body */
+  --text-lg:  1.125rem;   /* 18 */
+  --text-xl:  1.375rem;   /* 22 */
+  --text-2xl: 1.75rem;    /* 28 */
+  --text-3xl: 2.25rem;    /* 36 */
+  --text-4xl: 3rem;       /* 48 */
+  --text-5xl: 4rem;       /* 64 */
+  --text-6xl: 5.5rem;     /* 88 — hero */
+
+  /* Line heights */
+  --leading-none:    1;
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  /* Letter spacing */
+  --tracking-tightest: -0.03em;
+  --tracking-tight:    -0.015em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.12em;  /* wordmark-style display */
+  --tracking-widest:   0.22em;  /* eyebrows / overlines */
+}

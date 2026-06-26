@@ -1,0 +1,44 @@
+/* ============================================================
+   MAVICO · Effects — radii, borders, shadows, motion
+   Corners are slightly rounded (4px family). Shadows are quiet
+   and warm-tinted; a gold "glow" exists for emphasis on dark.
+   ============================================================ */
+
+:root {
+  /* Radii (slightly rounded direction) */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-xl:   14px;
+  --radius-2xl:  20px;
+  --radius-full: 9999px;
+
+  /* Border widths */
+  --border-hair: 1px;
+  --border-thick: 2px;
+  --border-accent: 3px; /* gold rule / left-bar motif */
+
+  /* Shadows — warm-tinted, restrained */
+  --shadow-xs: 0 1px 2px rgba(13,13,12,0.06);
+  --shadow-sm: 0 1px 3px rgba(13,13,12,0.08), 0 1px 2px rgba(13,13,12,0.06);
+  --shadow-md: 0 4px 12px rgba(13,13,12,0.10), 0 2px 4px rgba(13,13,12,0.06);
+  --shadow-lg: 0 12px 32px rgba(13,13,12,0.14), 0 4px 8px rgba(13,13,12,0.08);
+  --shadow-xl: 0 24px 60px rgba(13,13,12,0.20), 0 8px 16px rgba(13,13,12,0.10);
+
+  /* On-dark elevation */
+  --shadow-ondark: 0 16px 48px rgba(0,0,0,0.55);
+
+  /* Gold glow — emphasis on dark surfaces */
+  --glow-gold: 0 0 0 1px rgba(195,143,43,0.45), 0 8px 28px rgba(195,143,43,0.28);
+
+  /* Focus ring */
+  --ring: 0 0 0 3px rgba(195,143,43,0.35);
+
+  /* Motion — crisp, confident; no bounce */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast:   140ms; /* @kind other */
+  --dur-base:   220ms; /* @kind other */
+  --dur-slow:   400ms; /* @kind other */
+}
