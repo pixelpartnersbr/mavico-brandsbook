@@ -16,6 +16,7 @@ body {
   color: var(--text-inverse);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 img { display: block; max-width: 100%; }
 ::selection { background: var(--brand); color: var(--ink-950); }
@@ -114,10 +115,15 @@ img { display: block; max-width: 100%; }
 .rotate-tip { display: none; }
 
 @media (max-width: 819px) {
+  /* Drive the scale from the REAL viewport via CSS so it's always responsive,
+     regardless of JS timing. min() = contain (fit width, or height in landscape). */
+  :root {
+    --bs: min((100vw - 12px) / 1440px, (100svh - 72px) / 810px) !important;
+  }
   .booknav { display: none; }
   .actions { top: 12px; right: 12px; gap: 8px; }
   .actions button, .langtog button { font-size: 10px; padding: 8px 11px; letter-spacing: 0.1em; }
-  .book { padding: 64px 0 64px; gap: 18px; }
+  .book { padding: 60px 0 72px; gap: 16px; }
 }
 @media (max-width: 700px) and (orientation: portrait) {
   .rotate-tip {
