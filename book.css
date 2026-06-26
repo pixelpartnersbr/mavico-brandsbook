@@ -1,0 +1,161 @@
+/* ============================================================
+   MAVICO — Brand Book
+   Fixed 1440×810 spreads, JS-scaled to fit on screen,
+   one-spread-per-page in print / PDF.
+   ============================================================ */
+:root { --bs: 1; --spread-w: 1440px; --spread-h: 810px; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(195,143,43,0.10), transparent 60%),
+    var(--ink-950);
+  font-family: var(--font-body);
+  color: var(--text-inverse);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; }
+::selection { background: var(--brand); color: var(--ink-950); }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+/* ---- book column ---- */
+.book {
+  padding: clamp(20px, 4vw, 64px) 0 96px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+}
+
+/* ---- scaled frame reserves the on-screen footprint ---- */
+.frame {
+  position: relative;
+  width: calc(var(--spread-w) * var(--bs));
+  height: calc(var(--spread-h) * var(--bs));
+  flex: none;
+}
+
+/* ---- the spread: real 1440×810, scaled via transform ---- */
+.spread {
+  position: absolute; top: 0; left: 0;
+  width: var(--spread-w); height: var(--spread-h);
+  transform: scale(var(--bs)); transform-origin: top left;
+  overflow: hidden;
+  background: var(--ink-950);
+  box-shadow: 0 40px 90px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+  display: flex; flex-direction: column;
+}
+.spread--paper { background: var(--ink-50); color: var(--ink-950); }
+.spread--soft { background: var(--ink-900); }
+
+/* spread inner padding area */
+.pad { flex: 1; min-height: 0; padding: 76px 88px 0; display: flex; flex-direction: column; }
+
+/* ---- running footer ---- */
+.foot {
+  height: 64px; flex: none; margin: 0 88px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border-ondark);
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-400);
+}
+.spread--paper .foot { border-top-color: var(--border-subtle); color: var(--ink-500); }
+.foot .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); display: inline-block; }
+
+/* ---- side nav ---- */
+.booknav {
+  position: fixed; top: 50%; right: 22px; transform: translateY(-50%);
+  z-index: 60; display: flex; flex-direction: column; gap: 2px;
+  background: rgba(13,13,12,0.72); backdrop-filter: blur(10px);
+  border: 1px solid var(--border-ondark); border-radius: 12px; padding: 8px;
+}
+.booknav button {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  background: transparent; border: 0; cursor: pointer; padding: 7px 10px;
+  border-radius: 7px; color: var(--ink-400); text-align: left;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; transition: background .2s, color .2s;
+}
+.booknav button .num { color: var(--ink-500); font-size: 10px; min-width: 16px; }
+.booknav button .lbl { white-space: nowrap; opacity: 0; max-width: 0; overflow: hidden; transition: opacity .2s, max-width .25s; }
+.booknav:hover button .lbl { opacity: 1; max-width: 180px; }
+.booknav button:hover { background: rgba(255,255,255,0.06); color: var(--ink-200); }
+.booknav button.active { color: var(--white); }
+.booknav button.active .num { color: var(--brand); }
+.booknav button.active .bar { background: var(--brand); }
+.booknav button .bar { width: 14px; height: 2px; background: var(--ink-600); border-radius: 2px; flex: none; transition: background .2s; }
+
+/* ---- floating actions ---- */
+.actions { position: fixed; top: 18px; right: 22px; z-index: 60; display: flex; gap: 10px; }
+.actions button {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  background: rgba(13,13,12,0.72); backdrop-filter: blur(10px); color: var(--ink-200);
+  border: 1px solid var(--border-ondark); border-radius: 8px; padding: 9px 14px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; transition: background .2s, color .2s, border-color .2s;
+}
+.actions button:hover { background: var(--brand); color: var(--ink-950); border-color: var(--brand); }
+
+/* language toggle */
+.langtog {
+  display: inline-flex; border: 1px solid var(--border-ondark); border-radius: 8px;
+  overflow: hidden; background: rgba(13,13,12,0.72); backdrop-filter: blur(10px);
+}
+.langtog button {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+  background: transparent; color: var(--ink-400); border: 0; padding: 9px 13px;
+  cursor: pointer; transition: background .2s, color .2s;
+}
+.langtog button.on { background: var(--brand); color: var(--ink-950); }
+.langtog button:not(.on):hover { color: var(--ink-100); }
+
+@media (max-width: 720px) { .booknav { display: none; } }
+
+/* ---- reusable spread helpers ---- */
+.kick {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand);
+}
+.kick::before { content: ""; width: 26px; height: 3px; background: var(--brand); display: inline-block; }
+.kick--plain::before { display: none; }
+
+.h-display {
+  font-family: var(--font-display); font-weight: 500; line-height: 1.05;
+  letter-spacing: -0.025em; margin: 0; color: var(--white);
+}
+.spread--paper .h-display { color: var(--ink-950); }
+.gold { color: var(--brand); }
+.lead {
+  font-family: var(--font-body); font-size: 18px; line-height: 1.55; margin: 0;
+  color: var(--ink-300); max-width: 56ch;
+}
+.spread--paper .lead { color: var(--ink-600); }
+.mono-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-400); }
+.spread--paper .mono-label { color: var(--ink-500); }
+
+/* hairline grids */
+.rule { height: 1px; background: var(--border-ondark); border: 0; }
+.spread--paper .rule { background: var(--border-subtle); }
+
+/* ============================================================
+   PRINT  /  PDF  — one spread per landscape page, native size
+   ============================================================ */
+@page { size: 1440px 810px; margin: 0; }
+@media print {
+  html, body { background: #fff !important; }
+  .booknav, .actions { display: none !important; }
+  .book { padding: 0; gap: 0; }
+  .frame { width: 1440px !important; height: 810px !important; }
+  .spread {
+    position: static !important; transform: none !important;
+    width: 1440px !important; height: 810px !important;
+    box-shadow: none !important; break-after: page; page-break-after: always;
+  }
+  .frame:last-child .spread { break-after: auto; page-break-after: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
