@@ -133,17 +133,27 @@ function BrandBook({ spreads }) {
   window.__lang = lang;
   const L = (v) => (v && typeof v === "object" && "en" in v) ? (v[lang] || v.en) : v;
 
-  // scale spreads to fit viewport width
+  // scale spreads to fit: desktop fits width (and scrolls); mobile fits the
+  // whole spread on screen (contain) so it's never cropped, plus pinch-zoom.
   React.useEffect(() => {
     const fit = () => {
-      const margin = window.innerWidth < 760 ? 24 : 128;
-      const avail = Math.min(window.innerWidth - margin, 1440);
-      const s = Math.max(0.2, Math.min(1, avail / 1440));
-      document.documentElement.style.setProperty("--bs", s.toFixed(4));
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const mobile = vw < 820;
+      let s;
+      if (mobile) {
+        const wScale = (vw - 16) / 1440;
+        const hScale = (vh - 88) / 810;
+        s = Math.min(wScale, hScale);
+      } else {
+        s = Math.min(1, (vw - 128) / 1440);
+      }
+      document.documentElement.style.setProperty("--bs", Math.max(0.16, s).toFixed(4));
+      document.documentElement.setAttribute("data-mobile", mobile ? "1" : "0");
     };
     fit();
     window.addEventListener("resize", fit);
-    return () => window.removeEventListener("resize", fit);
+    window.addEventListener("orientationchange", fit);
+    return () => { window.removeEventListener("resize", fit); window.removeEventListener("orientationchange", fit); };
   }, []);
 
   // active-section tracking
@@ -173,6 +183,10 @@ function BrandBook({ spreads }) {
           <button className={lang === "fr" ? "on" : ""} onClick={() => setLang("fr")} aria-pressed={lang === "fr"}>FR</button>
         </div>
         <button onClick={() => window.print()}><Download /> {t("Save PDF", "PDF")}</button>
+      </div>
+      <div className="rotate-tip">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7" /><path d="M3 3v4h4" /></svg>
+        {t("Rotate · pinch to zoom", "Tournez · pincez pour zoomer")}
       </div>
       <BookNav items={spreads.map((s) => ({ section: L(s.section) }))} active={active} onJump={jump} />
       <div className="book">
